@@ -1,0 +1,22 @@
+UID: mqtt:topic:c226d78743:3e19c1933f
+label: Generic MQTT Thing
+thingTypeUID: mqtt:topic
+configuration: {}
+bridgeUID: mqtt:broker:c226d78743
+channels:
+  - id: temp_kotol
+    channelTypeUID: mqtt:number
+    label: Kotol (Teplota)
+    description: ""
+    configuration:
+      stateTopic: garage/temperatures
+      transformationPattern: JSONPATH:$.temp_kotol
+      unit: °C
+  - id: teplota_boiler_1
+    channelTypeUID: mqtt:number
+    label: Boiler (Teplota)
+    description: ""
+    configuration:
+      stateTopic: garage/temperatures
+      transformationPattern: JSONPATH:$.temp_boiler
+      unit: °C
