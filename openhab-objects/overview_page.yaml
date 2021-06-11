@@ -1,0 +1,63 @@
+config:
+  label: Overview
+blocks:
+  - component: oh-block
+    config: {}
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        trendItem: teplota_kotol
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - teplota_kotol
+                        item: teplota_kotol
+                        footer: Teplota kotla
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-label-card
+                      config:
+                        action: analyzer
+                        actionAnalyzerItems:
+                          - teplota_boiler
+                        footer: Teplota boileru
+                        item: teplota_boiler
+                        trendItem: teplota_boiler
+  - component: oh-block
+    config: {}
+    slots:
+      default:
+        - component: oh-grid-row
+          config: {}
+          slots:
+            default:
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default:
+                    - component: oh-toggle-card
+                      config:
+                        item: send_value
+                        footer: Switch
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default: []
+              - component: oh-grid-col
+                config: {}
+                slots:
+                  default: []
+masonry:
+  - component: oh-masonry
+    slots:
+      default: []
