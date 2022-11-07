@@ -2,8 +2,8 @@
 #include <PubSubClient.h>
 #include <string.h>
 
-const char *ssid = "SOME_SSID";
-const char *password = "SOME_PASS";
+const char *wifiSSID = "SOME_SSID";
+const char *wifiPassword = "SOME_PASS";
 const char *mqttServer = "SOME_IP";
 const int mqttPort = 1883;
 
@@ -39,7 +39,7 @@ void callback(char *topic, byte *payload, unsigned int length)
 void setup(){
     pinMode(2, OUTPUT);
     Serial.begin(115200);
-    WiFi.begin(ssid, password);
+    WiFi.begin(wifiSSID, wifiPassword);
 
     while (WiFi.status() != WL_CONNECTED){
         delay(500);

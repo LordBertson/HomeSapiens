@@ -1,6 +1,7 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #include <stdio.h>
+#include <ArduinoJson.h>
 
 #define ONE_WIRE_BUS_1 2
 
@@ -15,7 +16,7 @@ DallasTemperature sensors1(&oneWire1);
 DallasTemperature sensors2(&oneWire2);
 
 float temp_kotol = 0;
-float temp_boiler = 0
+float temp_boiler = 0;
 
 void setup(void)
 {
@@ -25,16 +26,19 @@ void setup(void)
   sensors2.begin();
 }
 
-void loop(void) {
+void loop(void)
+{
+  DynamicJsonDocument doc(1024);
+
   sensors1.requestTemperatures();
   sensors2.requestTemperatures();
   temp_kotol = sensors1.getTempCByIndex(0);
   temp_boiler = sensors2.getTempCByIndex(0);
 
-  String json_data = "{\"temp_kotol\":" + String(temp_kotol) + ",\"temp_boiler\":" + String(temp_boiler) + "} ";
+  doc["temp_kotol"] = temp_kotol;
+  doc["temp_boiler"] = temp_boiler;
 
-  // Write the JSON string over serial to ESP8266 wired on board
-  Serial.print(json_data);
+  serializeJson(doc, Serial);
 
   delay(5000);
 }
